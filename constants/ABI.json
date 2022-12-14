@@ -1,0 +1,651 @@
+[
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "bytes32",
+        "name": "appID",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "appAdmin",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "admin",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint8",
+        "name": "role",
+        "type": "uint8"
+      }
+    ],
+    "name": "AppAdmin",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "bytes32",
+        "name": "appID",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "subscriber",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "count",
+        "type": "uint256"
+      }
+    ],
+    "name": "AppSubscribed",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "bytes32",
+        "name": "appID",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "subscriber",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "count",
+        "type": "uint256"
+      }
+    ],
+    "name": "AppUnSubscribed",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint8",
+        "name": "version",
+        "type": "uint8"
+      }
+    ],
+    "name": "Initialized",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "bytes32",
+        "name": "appID",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "appAdmin",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "appName",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "dappCount",
+        "type": "uint256"
+      }
+    ],
+    "name": "NewAppRegistered",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "bytes32",
+        "name": "appId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "walletAddress",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "message",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "buttonName",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "cta",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "bool",
+        "name": "isEncrypted",
+        "type": "bool"
+      }
+    ],
+    "name": "NewNotification",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "previousOwner",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "newOwner",
+        "type": "address"
+      }
+    ],
+    "name": "OwnershipTransferred",
+    "type": "event"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "_chainId", "type": "uint256" },
+      {
+        "internalType": "uint256",
+        "name": "_defaultCredits",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_renewalPeriod",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "_trustedForwarder",
+        "type": "address"
+      }
+    ],
+    "name": "__UnifarmAccounts_init",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "bytes32", "name": "appID", "type": "bytes32" },
+      { "internalType": "address", "name": "admin", "type": "address" },
+      { "internalType": "uint8", "name": "_role", "type": "uint8" }
+    ],
+    "name": "addAppAdmin",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "contract GasRestrictor",
+        "name": "_gasRestrictor",
+        "type": "address"
+      }
+    ],
+    "name": "addGasRestrictor",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "string", "name": "_appName", "type": "string" },
+      { "internalType": "address", "name": "_appAdmin", "type": "address" },
+      { "internalType": "string", "name": "_appUrl", "type": "string" },
+      { "internalType": "string", "name": "_appIcon", "type": "string" },
+      { "internalType": "string", "name": "_appCoverImage", "type": "string" },
+      {
+        "internalType": "string",
+        "name": "_appSmallDescription",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_appLargeDescription",
+        "type": "string"
+      },
+      {
+        "internalType": "string[]",
+        "name": "_appScreenshots",
+        "type": "string[]"
+      },
+      {
+        "internalType": "string[]",
+        "name": "_appCategory",
+        "type": "string[]"
+      },
+      { "internalType": "string[]", "name": "_appTags", "type": "string[]" }
+    ],
+    "name": "addNewDapp",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "bytes32", "name": "appID", "type": "bytes32" },
+      { "internalType": "bool", "name": "verificationStatus", "type": "bool" }
+    ],
+    "name": "appVerification",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "chainId",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "_account", "type": "address" },
+      { "internalType": "string", "name": "_encPvtKey", "type": "string" },
+      { "internalType": "string", "name": "_publicKey", "type": "string" }
+    ],
+    "name": "createWallet",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }],
+    "name": "dapps",
+    "outputs": [
+      { "internalType": "string", "name": "appName", "type": "string" },
+      { "internalType": "bytes32", "name": "appId", "type": "bytes32" },
+      { "internalType": "address", "name": "appAdmin", "type": "address" },
+      { "internalType": "string", "name": "appUrl", "type": "string" },
+      { "internalType": "string", "name": "appIcon", "type": "string" },
+      {
+        "internalType": "string",
+        "name": "appSmallDescription",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "appLargeDescription",
+        "type": "string"
+      },
+      { "internalType": "string", "name": "appCoverImage", "type": "string" },
+      { "internalType": "bool", "name": "isVerifiedDapp", "type": "bool" },
+      { "internalType": "uint256", "name": "credits", "type": "uint256" },
+      {
+        "internalType": "uint256",
+        "name": "renewalTimestamp",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "dappsCount",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "defaultCredits",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "_account", "type": "address" }
+    ],
+    "name": "deleteWallet",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "gasRestrictor",
+    "outputs": [
+      {
+        "internalType": "contract GasRestrictor",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "bytes32", "name": "dappId", "type": "bytes32" }
+    ],
+    "name": "getDapp",
+    "outputs": [
+      {
+        "components": [
+          { "internalType": "string", "name": "appName", "type": "string" },
+          { "internalType": "bytes32", "name": "appId", "type": "bytes32" },
+          { "internalType": "address", "name": "appAdmin", "type": "address" },
+          { "internalType": "string", "name": "appUrl", "type": "string" },
+          { "internalType": "string", "name": "appIcon", "type": "string" },
+          {
+            "internalType": "string",
+            "name": "appSmallDescription",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "appLargeDescription",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "appCoverImage",
+            "type": "string"
+          },
+          {
+            "internalType": "string[]",
+            "name": "appScreenshots",
+            "type": "string[]"
+          },
+          {
+            "internalType": "string[]",
+            "name": "appCategory",
+            "type": "string[]"
+          },
+          { "internalType": "string[]", "name": "appTags", "type": "string[]" },
+          { "internalType": "bool", "name": "isVerifiedDapp", "type": "bool" },
+          { "internalType": "uint256", "name": "credits", "type": "uint256" },
+          {
+            "internalType": "uint256",
+            "name": "renewalTimestamp",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct UnifarmAccountsUpgradeable.Dapp",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "bytes32", "name": "_dappId", "type": "bytes32" }
+    ],
+    "name": "getDappAdmin",
+    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "user", "type": "address" }
+    ],
+    "name": "getNotificationsOf",
+    "outputs": [
+      {
+        "components": [
+          { "internalType": "bytes32", "name": "appID", "type": "bytes32" },
+          {
+            "internalType": "address",
+            "name": "walletAddressTo",
+            "type": "address"
+          },
+          { "internalType": "string", "name": "message", "type": "string" },
+          { "internalType": "string", "name": "buttonName", "type": "string" },
+          { "internalType": "string", "name": "cta", "type": "string" },
+          { "internalType": "uint256", "name": "timestamp", "type": "uint256" },
+          { "internalType": "bool", "name": "isEncrypted", "type": "bool" }
+        ],
+        "internalType": "struct UnifarmAccountsUpgradeable.Notification[]",
+        "name": "",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "address", "name": "", "type": "address" }],
+    "name": "getPrimaryFromSecondary",
+    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "_account", "type": "address" }
+    ],
+    "name": "getSecondaryWalletAccount",
+    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "bytes32", "name": "", "type": "bytes32" },
+      { "internalType": "address", "name": "", "type": "address" }
+    ],
+    "name": "isSubscribed",
+    "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "forwarder", "type": "address" }
+    ],
+    "name": "isTrustedForwarder",
+    "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }],
+    "name": "notificationsCount",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "", "type": "address" },
+      { "internalType": "uint256", "name": "", "type": "uint256" }
+    ],
+    "name": "notificationsOf",
+    "outputs": [
+      { "internalType": "bytes32", "name": "appID", "type": "bytes32" },
+      {
+        "internalType": "address",
+        "name": "walletAddressTo",
+        "type": "address"
+      },
+      { "internalType": "string", "name": "message", "type": "string" },
+      { "internalType": "string", "name": "buttonName", "type": "string" },
+      { "internalType": "string", "name": "cta", "type": "string" },
+      { "internalType": "uint256", "name": "timestamp", "type": "uint256" },
+      { "internalType": "bool", "name": "isEncrypted", "type": "bool" }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "owner",
+    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "bytes32", "name": "dappId", "type": "bytes32" }
+    ],
+    "name": "renewCredits",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "renewalPeriod",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "renounceOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "", "type": "address" },
+      { "internalType": "bytes32", "name": "", "type": "bytes32" }
+    ],
+    "name": "roleOfAddress",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "sendNotificationRole",
+        "type": "bool"
+      },
+      { "internalType": "bool", "name": "addAdminRole", "type": "bool" }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "bytes32", "name": "_appId", "type": "bytes32" },
+      { "internalType": "address", "name": "walletAddress", "type": "address" },
+      { "internalType": "string", "name": "_message", "type": "string" },
+      { "internalType": "string", "name": "buttonName", "type": "string" },
+      { "internalType": "string", "name": "_cta", "type": "string" },
+      { "internalType": "bool", "name": "_isEncrypted", "type": "bool" }
+    ],
+    "name": "sendAppNotification",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "user", "type": "address" },
+      { "internalType": "bytes32", "name": "appID", "type": "bytes32" },
+      { "internalType": "bool", "name": "subscriptionStatus", "type": "bool" }
+    ],
+    "name": "subscribeToDapp",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }],
+    "name": "subscriberCount",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "newOwner", "type": "address" }
+    ],
+    "name": "transferOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "trustedForwarder",
+    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "uint256", "name": "num", "type": "uint256" }],
+    "name": "uintToBytes32",
+    "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }],
+    "stateMutability": "pure",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "_newForwarder", "type": "address" }
+    ],
+    "name": "updateTrustedForwarder",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "address", "name": "", "type": "address" }],
+    "name": "userWallets",
+    "outputs": [
+      { "internalType": "address", "name": "account", "type": "address" },
+      { "internalType": "string", "name": "encPvtKey", "type": "string" },
+      { "internalType": "string", "name": "publicKey", "type": "string" }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "verifiedDappsCount",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  }
+]
