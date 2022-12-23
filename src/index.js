@@ -1,10 +1,11 @@
 const telegramBot = require("node-telegram-bot-api");
 const ethers = require("ethers");
 require("dotenv").config();
-// const TOKEN = process.env.TOKEN;
-const TOKEN = "5984423084:AAFauO8Yd-x2w1qTb_9d9UU0XtWLM64DZM8";
+const TOKEN = process.env.TOKEN;
+
 const abi = require("../constants/ABI.json");
-const contractAddress = 0xd178AceC8b810319C57f3F4443858294cA8C44b7;
+// const contractAddress = 0xd178AceC8b810319C57f3F4443858294cA8C44b7;
+const contractAddress = "0x1e1205eb304Db2DC47847Be657448d81133A82ae";
 //bot created
 const botUpdated = new telegramBot(TOKEN, { polling: true });
 
@@ -35,12 +36,47 @@ async function main() {
   const JsonRpcProvider = new ethers.providers.JsonRpcProvider(
     `https://rpc.ankr.com/polygon`
   );
+  console.log("1")
+
   const contract = new ethers.Contract(contractAddress, abi, JsonRpcProvider);
+  console.log("2")
+
   contract.on(
     "NewNotification",
     (appId, walletAddress, message, buttonName, cta, isEncrypted) => {
+      console.log("trigerred")
       console.log(appId, walletAddress, message, buttonName, cta, isEncrypted);
+      console.log("3")
+      botUpdated.sendMessage(1274562484,"message")
+
     }
   );
+  console.log("4")
+  contract.on(
+    "AppUnSubscribed",
+    (appId, walletAddress, message, buttonName, cta, isEncrypted) => {
+      console.log("trigerred")
+      console.log(appId, walletAddress, message, buttonName, cta, isEncrypted);
+      console.log("5")
+      botUpdated.sendMessage(1274562484,"message")
+
+
+    }
+  );
+  console.log("6")
+  contract.on(
+    "AppSubscribed",
+    (appId, walletAddress, message, buttonName, cta, isEncrypted) => {
+      console.log("trigerred")
+      console.log(appId, walletAddress, message, buttonName, cta, isEncrypted);
+      console.log("7")
+      botUpdated.sendMessage(1274562484,"message")
+
+
+    }
+  );
+  console.log("8")
+
+
 }
 main()

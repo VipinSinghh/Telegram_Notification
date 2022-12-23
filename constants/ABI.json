@@ -162,6 +162,12 @@
         "internalType": "bool",
         "name": "isEncrypted",
         "type": "bool"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "count",
+        "type": "uint256"
       }
     ],
     "name": "NewNotification",
@@ -214,7 +220,8 @@
     "inputs": [
       { "internalType": "bytes32", "name": "appID", "type": "bytes32" },
       { "internalType": "address", "name": "admin", "type": "address" },
-      { "internalType": "uint8", "name": "_role", "type": "uint8" }
+      { "internalType": "uint8", "name": "_role", "type": "uint8" },
+      { "internalType": "bool", "name": "isOauthUser", "type": "bool" }
     ],
     "name": "addAppAdmin",
     "outputs": [],
@@ -261,7 +268,8 @@
         "name": "_appCategory",
         "type": "string[]"
       },
-      { "internalType": "string[]", "name": "_appTags", "type": "string[]" }
+      { "internalType": "string[]", "name": "_appTags", "type": "string[]" },
+      { "internalType": "bool", "name": "isOauthUser", "type": "bool" }
     ],
     "name": "addNewDapp",
     "outputs": [],
@@ -271,7 +279,8 @@
   {
     "inputs": [
       { "internalType": "bytes32", "name": "appID", "type": "bytes32" },
-      { "internalType": "bool", "name": "verificationStatus", "type": "bool" }
+      { "internalType": "bool", "name": "verificationStatus", "type": "bool" },
+      { "internalType": "bool", "name": "isOauthUser", "type": "bool" }
     ],
     "name": "appVerification",
     "outputs": [],
@@ -289,7 +298,13 @@
     "inputs": [
       { "internalType": "address", "name": "_account", "type": "address" },
       { "internalType": "string", "name": "_encPvtKey", "type": "string" },
-      { "internalType": "string", "name": "_publicKey", "type": "string" }
+      { "internalType": "string", "name": "_publicKey", "type": "string" },
+      {
+        "internalType": "string",
+        "name": "oAuthEncryptedUserId",
+        "type": "string"
+      },
+      { "internalType": "bool", "name": "isOauthUser", "type": "bool" }
     ],
     "name": "createWallet",
     "outputs": [],
@@ -520,6 +535,17 @@
     "type": "function"
   },
   {
+    "inputs": [{ "internalType": "string", "name": "", "type": "string" }],
+    "name": "oAuthUserWallets",
+    "outputs": [
+      { "internalType": "address", "name": "account", "type": "address" },
+      { "internalType": "string", "name": "encPvtKey", "type": "string" },
+      { "internalType": "string", "name": "publicKey", "type": "string" }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "inputs": [],
     "name": "owner",
     "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
@@ -528,7 +554,8 @@
   },
   {
     "inputs": [
-      { "internalType": "bytes32", "name": "dappId", "type": "bytes32" }
+      { "internalType": "bytes32", "name": "dappId", "type": "bytes32" },
+      { "internalType": "bool", "name": "isOauthUser", "type": "bool" }
     ],
     "name": "renewCredits",
     "outputs": [],
@@ -573,7 +600,8 @@
       { "internalType": "string", "name": "_message", "type": "string" },
       { "internalType": "string", "name": "buttonName", "type": "string" },
       { "internalType": "string", "name": "_cta", "type": "string" },
-      { "internalType": "bool", "name": "_isEncrypted", "type": "bool" }
+      { "internalType": "bool", "name": "_isEncrypted", "type": "bool" },
+      { "internalType": "bool", "name": "isOauthUser", "type": "bool" }
     ],
     "name": "sendAppNotification",
     "outputs": [],
@@ -584,7 +612,8 @@
     "inputs": [
       { "internalType": "address", "name": "user", "type": "address" },
       { "internalType": "bytes32", "name": "appID", "type": "bytes32" },
-      { "internalType": "bool", "name": "subscriptionStatus", "type": "bool" }
+      { "internalType": "bool", "name": "subscriptionStatus", "type": "bool" },
+      { "internalType": "bool", "name": "isOauthUser", "type": "bool" }
     ],
     "name": "subscribeToDapp",
     "outputs": [],
